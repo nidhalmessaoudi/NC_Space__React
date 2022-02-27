@@ -1,0 +1,22 @@
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 3rem;
+  background-color: aquamarine;
+}
+
+.navbar-brand {
+  font-size: 1.7rem;
+  font-weight: bold;
+}
+
+.navbar-items {
+  list-style: none;
+}
+
+.navbar-items li {
+  display: inline;
+  padding-left: 1rem;
+}
