@@ -1,4 +1,5 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import "./App.css";
 
@@ -8,6 +9,8 @@ import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
 
 function App() {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
   return (
     <>
       <Navbar />
@@ -15,8 +18,14 @@ function App() {
         <Routes>
           <Route path="" element={<h1>Hello from NC Space!</h1>} />
           <Route path="articles" element={<Articles />} />
-          <Route path="login" element={<Login />} />
-          <Route path="signup" element={<Signup />} />
+          <Route
+            path="login"
+            element={!isLoggedIn ? <Login /> : <Navigate to="" />}
+          />
+          <Route
+            path="signup"
+            element={!isLoggedIn ? <Signup /> : <Navigate to="" />}
+          />
         </Routes>
       </div>
     </>

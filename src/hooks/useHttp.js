@@ -10,14 +10,20 @@ function useHttp() {
     try {
       setIsLoading(true);
       const res = await axios({
-        url: options.url,
+        url: `${process.env.REACT_APP_API_URL}${options.path}`,
         method: options.method,
         data: options.body || undefined,
       });
 
+      console.log(res);
+
       setData(res.data.data);
     } catch (err) {
-      setError(err);
+      if (err.response.status) {
+        setError(err.response.data);
+      } else {
+        setError(err);
+      }
     }
     setIsLoading(false);
   }, []);

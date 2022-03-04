@@ -1,17 +1,18 @@
 import { useEffect } from "react";
 
 import Article from "./Article";
-import useHttp from "../../hooks/use-http";
+import useHttp from "../../hooks/useHttp";
 
-function Articles(props) {
+function Articles() {
   const [send, infos] = useHttp();
 
   useEffect(() => {
     send({
-      url: `${process.env.REACT_APP_API_URL}/articles`,
+      path: "/articles",
       method: "GET",
     });
   }, [send]);
+
   return (
     <>
       {infos.isLoading && <p>Loading...</p>}
